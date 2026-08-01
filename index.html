@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friendship Day Surprise - Tyagi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fdfcfb 100%);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+            width: 100%;
+            animation: popIn 1s ease-out forwards;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        h1 {
+            color: #e91e63;
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .message-box {
+            background: #fff0f5;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #e91e63;
+            margin-bottom: 30px;
+        }
+
+        .message-box h2 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .message-box p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            background: #c2185b;
+            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+        }
+
+        .heart-container {
+            margin-top: 20px;
+            font-size: 2rem;
+        }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            color: #ff6b6b;
+            font-size: 20px;
+            animation: rise linear infinite;
+        }
+        
+        @keyframes rise {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(720deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Floating Hearts -->
+    <div class="floating-hearts" id="heartsContainer"></div>
+
+    <!-- Main Card -->
+    <div class="card">
+        <h1>🎉 Tyagi!</h1>
+        <div class="subtitle">Happy Friendship Day ❤️</div>
+        
+        <div class="message-box">
+            <h2>A Special Surprise For You!</h2>
+            <p>Dosti ka matlab sirf milna-julna nahi, balki har mushkil mein saath dena hai. 
+            <br><br>
+            <strong>You are an amazing friend!</strong> <br> Keep smiling, keep shining!</p>
+        </div>
+
+        <button class="btn" onclick="showSurprise()">Click for Surprise 🎁</button>
+        
+        <div id="surpriseText" class="heart-container" style="display: none;">
+            🌟🤗 TUM BEST HO, BRO! 🤗🌟
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for Floating Hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+            heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+            document.getElementById('heartsContainer').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }
+
+        // Create hearts every 500ms
+        setInterval(createHeart, 500);
+
+        // Surprise Button Logic
+        function showSurprise() {
+            const surprise = document.getElementById('surpriseText');
+            if(surprise.style.display === 'none') {
+                surprise.style.display = 'block';
+                surprise.style.animation = 'popIn 0.5s ease-out forwards';
+            } else {
+                surprise.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
